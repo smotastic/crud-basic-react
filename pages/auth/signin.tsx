@@ -14,31 +14,45 @@ import Typography from '@mui/material/Typography';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import { useRouter } from 'next/router';
 import { Alert, Card, CardContent } from '@mui/material';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
+import { signIn, useSession } from 'next-auth/react';
 
 
 export default function SignInSide() {
 
     const [error, setError] = useState('');
 
+    const { data, status } = useSession();
+
+    useEffect(() => {
+        if (data) {
+            router.replace('/');
+        }
+    }, [data]);
+
     const router = useRouter();
     const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
         event.preventDefault();
         const data = new FormData(event.currentTarget);
-        // eslint-disable-next-line no-console
-        const res = await fetch("/api/login", {
-            body: JSON.stringify({
-                username: data.get('email'),
-                password: data.get('password')
-            }),
-            method: 'POST'
+        const email = data.get('email');
+        const password = data.get('password')
+
+
+        const result : any = await signIn('credentials', {
+            redirect: false,
+            email: email,
+            password: password,
         });
-        if (res.redirected) {
-            router.push(res.url);
-        } else if (!res.ok) {
-            const error = await res.json()
-            setError(error.error);
+
+        if(result!.error) {
+            setError('Invalid Credentials');
+        } else {
+            router.push('/');
         }
+
+        console.log(result)
+
+        return false;
 
     };
 
