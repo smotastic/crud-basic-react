@@ -2,9 +2,9 @@ import { useSession } from "next-auth/react";
 import Dashboard from "./Dashboard";
 import Layout from "./Layout";
 
-type CustomAppProps = { children: React.ReactNode }
+type WrappedAppProps = { children: React.ReactNode }
 
-export default function WrappedApp({ children }: CustomAppProps) {
+export default function WrappedApp({ children }: WrappedAppProps) {
     const { data, status } = useSession();
     return (
         <>

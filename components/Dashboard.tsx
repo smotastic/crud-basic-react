@@ -14,7 +14,7 @@ import InboxIcon from '@mui/icons-material/Inbox';
 import MailIcon from '@mui/icons-material/Mail';
 import ListItemText from '@mui/material/ListItemText';
 import { ListItem, ListItemButton, ListItemIcon } from '@mui/material';
-import { KeyboardDoubleArrowLeft } from '@mui/icons-material';
+import { ArrowBack, KeyboardDoubleArrowLeft } from '@mui/icons-material';
 
 import { ColorModeContext } from './Layout';
 import Brightness4Icon from '@mui/icons-material/Brightness4';
@@ -23,6 +23,8 @@ import Brightness7Icon from '@mui/icons-material/Brightness7';
 import { AppProps } from 'next/app';
 
 import { useState } from 'react';
+import { useSession } from 'next-auth/react';
+import { useRouter } from 'next/router';
 
 const drawerWidth = 240;
 
@@ -81,8 +83,9 @@ export default function PersistentDrawerLeft({ children }: DashboardProps) {
     const theme = useTheme();
     const colorMode = React.useContext(ColorModeContext);
     const [open, setOpen] = React.useState(true);
-    const [posts, setPostItems] = useState([]);
-    const [title, setTitle] = useState<string>('Document');
+
+    const { data, status } = useSession();
+    const router = useRouter();
 
     const handleDrawerOpen = () => {
         setOpen(true);
@@ -108,7 +111,10 @@ export default function PersistentDrawerLeft({ children }: DashboardProps) {
                         <MenuIcon />
                     </IconButton>
                     <Typography variant="h6" noWrap component="div">
-                        {title}
+                        {router.route !== '/' && <IconButton onClick={() => router.push('/')} >
+                            <ArrowBack />
+                        </IconButton>}
+                        {'Crud App'}
                     </Typography>
                 </Toolbar>
             </AppBar>
@@ -128,20 +134,19 @@ export default function PersistentDrawerLeft({ children }: DashboardProps) {
                 open={open}
             >
                 <DrawerHeader>
+                    <Typography variant="h6" noWrap component="div" align='left'>
+                        {data?.user?.email}
+                    </Typography>
                     <IconButton onClick={handleDrawerClose}>
                         <KeyboardDoubleArrowLeft />
                     </IconButton>
                 </DrawerHeader>
                 <Divider />
                 <List>
-                    {['Inbox', 'Starred', 'Send email', 'Drafts'].map((text, index) => (
-                        <ListItem button key={text}>
-                            <ListItemIcon>
-                                {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
-                            </ListItemIcon>
-                            <ListItemText primary={text} />
-                        </ListItem>
-                    ))}
+                    <ListItemButton onClick={() => router.push('/')}>
+                        <ListItemText primary={'List'} />
+                        <MenuIcon />
+                    </ListItemButton>
                 </List>
                 <Divider />
                 <List
