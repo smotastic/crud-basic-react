@@ -8,7 +8,7 @@ import { getToken } from 'next-auth/jwt';
 
 
 
-// https://github.com/vercel/examples/blob/main/edge-functions/basic-auth-password/pages/_middleware.ts
+// https://gist.github.com/balazsorban44/30e2267fe1105529f217acbe3763b468
 export async function middleware(req: any) {
     // return early if url isn't supposed to be protected
     if (req.url.includes("/auth")) {

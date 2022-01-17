@@ -50,8 +50,6 @@ export default function SignInSide() {
             router.push('/');
         }
 
-        console.log(result)
-
         return false;
 
     };
