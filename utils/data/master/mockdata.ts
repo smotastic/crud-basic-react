@@ -1,6 +1,6 @@
 import { DataRepository, MasterData } from "./index";
 
-const data: MasterData[] = [
+let masterMockData: MasterData[] = [
     { id: 1, name: 'Master One' },
     { id: 2, name: 'Master Two' },
     { id: 3, name: 'Master Three' },
@@ -9,13 +9,20 @@ const data: MasterData[] = [
 
 export const MockMasterDataRepository: DataRepository = {
     findById: async function (id: number): Promise<MasterData> {
-        const byId = data.find(d => d.id === id);
-        if(!byId) {
+        const byId = masterMockData.find(d => d.id === id);
+        if (!byId) {
             throw new Error(`$id does not exist`);
         }
         return byId;
     },
     findAll: async function (): Promise<MasterData[]> {
-        return [...data];
+        return [...masterMockData];
+    },
+    update: async function (data: MasterData): Promise<MasterData> {
+        const index = masterMockData.findIndex(d => d.id === data.id);
+        masterMockData.splice(index, 1, data);
+
+        return data;
+        
     }
 }

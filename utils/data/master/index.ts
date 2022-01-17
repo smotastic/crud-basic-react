@@ -7,9 +7,10 @@ export interface MasterData {
 
 export interface DataRepository {
     findById: (id: number) => Promise<MasterData>;
-    findAll: () => Promise<MasterData[]>
+    findAll: () => Promise<MasterData[]>,
+    update: (data: MasterData) => Promise<MasterData>,
 }
 
-const dataRepo : DataRepository = MockMasterDataRepository;
+const dataRepo: DataRepository = MockMasterDataRepository;
 
 export default dataRepo;
