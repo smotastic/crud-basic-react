@@ -6,7 +6,7 @@ import DetailForm from "../../components/DetailForm"
 import { SnackbarContext } from "../../context/snackbar";
 import DataRepository, { MasterData } from "../../data/master"
 
-type DetailProps = { id: number }
+type DetailProps = { id: string }
 export default function Detail({ id }: DetailProps) {
 
     const { openSnackbar } = useContext(SnackbarContext);
@@ -20,6 +20,10 @@ export default function Detail({ id }: DetailProps) {
         }
         fetchData()
     }, [])
+
+//     const { isLoading, error, data, isFetching } = useQuery("masterFindById", () =>
+//     fetch(`/api/data/find/${id}`).then((res) => res.json())
+//   );
 
     const handleSubmit = useCallback((updatingData: MasterData) => {
         async function update() {
