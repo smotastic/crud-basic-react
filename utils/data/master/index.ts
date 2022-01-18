@@ -1,7 +1,7 @@
 import MockMasterDataRepository from "./mockdata";
 
 export interface MasterData {
-    id: number,
+    id?: number,
     name: string
 }
 

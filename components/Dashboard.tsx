@@ -110,12 +110,16 @@ export default function PersistentDrawerLeft({ children }: DashboardProps) {
                     >
                         <MenuIcon />
                     </IconButton>
-                    <Typography variant="h6" noWrap component="div">
+
+                    <Box sx={{ width: '100%', display: 'flex', justifyContent: 'flex-start' }}>
                         {router.route !== '/' && <IconButton onClick={() => router.push('/')} >
                             <ArrowBack />
                         </IconButton>}
-                        {'Crud App'}
-                    </Typography>
+                        <Typography variant="h6" noWrap component="div" lineHeight={2.6}>
+                            {'Crud App'}
+                        </Typography>
+                    </Box>
+
                 </Toolbar>
             </AppBar>
 
@@ -134,12 +138,14 @@ export default function PersistentDrawerLeft({ children }: DashboardProps) {
                 open={open}
             >
                 <DrawerHeader>
-                    <Typography variant="h6" noWrap component="div" align='left'>
-                        {data?.user?.email}
-                    </Typography>
-                    <IconButton onClick={handleDrawerClose}>
-                        <KeyboardDoubleArrowLeft />
-                    </IconButton>
+                    <Box sx={{ width: '100%', display: 'flex', justifyContent: 'space-between' }}>
+                        <Typography variant="h6" noWrap component="div" lineHeight={2.6}>
+                            {data?.user?.email}
+                        </Typography>
+                        <IconButton onClick={handleDrawerClose}>
+                            <KeyboardDoubleArrowLeft />
+                        </IconButton>
+                    </Box>
                 </DrawerHeader>
                 <Divider />
                 <List>

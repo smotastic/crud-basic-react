@@ -11,12 +11,12 @@ export default NextAuth({
                 password: {  label: "password", type: "password" }
               },
             authorize: async (credentials, req) => {
-                const successful = await auth.signin(credentials!.email, credentials!.password);
-                if(successful) {
-                    console.log("succesS");
-                    return {email: 'John doe'};
+                try {
+                    const authDetails = await auth.signin(credentials!.email, credentials!.password);
+                    return {email: authDetails.username};
+                } catch(error) {
+                    return null;
                 }
-                return null;
             }
         }),
     ],
