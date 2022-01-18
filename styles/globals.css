@@ -20,7 +20,7 @@ a {
   cursor: pointer;
 }
 
-.MuiImageListItemBar-titleWrap{
+.MuiImageListItemBar-titleWrap.MuiImageListItemBar-titleWrapBottom{
   padding-top: 2px;
   padding-bottom: 2px;
 }
