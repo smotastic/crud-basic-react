@@ -9,13 +9,13 @@ import { useQuery, useQueryClient } from "react-query";
 import { apiPath } from "../../utils/api.path";
 import { pagePath } from "../../utils/page.path";
 type DetailProps = { id: string }
-export default function Detail({ id }: DetailProps) {
+export default function Detail() {
     console.log("Reached Client");
     const { openSnackbar } = useContext(SnackbarContext);
     const queryClient = useQueryClient()
     const router = useRouter();
 
-
+    const { id } = router.query;
     const { isLoading, error, data, isFetching } = useQuery(`masterFindById${id}`, () =>
         fetch(`${apiPath.houseplants}/findById/${id}`).then((res) => res.json())
     );
@@ -57,13 +57,3 @@ function DetailSkeleton() {
         <Skeleton variant="rectangular" height={'100%'} />
     </>
 }
-
-export const getServerSideProps: GetServerSideProps = async (context) => {
-    console.log('Starting Detail');
-    const id = context?.params?.id as string;
-    console.log('Ending Detail ' + id);
-    return {
-        props: { id: id },
-    }
-}
-
