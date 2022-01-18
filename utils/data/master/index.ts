@@ -1,4 +1,4 @@
-import { MockMasterDataRepository } from "./mockdata";
+import MockMasterDataRepository from "./mockdata";
 
 export interface MasterData {
     id: number,
@@ -11,6 +11,6 @@ export interface DataRepository {
     update: (data: MasterData) => Promise<MasterData>,
 }
 
-const dataRepo: DataRepository = MockMasterDataRepository;
+const dataRepo: DataRepository = new MockMasterDataRepository();
 
 export default dataRepo;

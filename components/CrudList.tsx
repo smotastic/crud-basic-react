@@ -14,7 +14,6 @@ export default function CrudList({ data }: CrudListProps) {
     const router = useRouter();
 
     const onRowClickHandler = (param: GridRowParams) => {
-        console.log(param.row);
         router.push(`/detail/${param.row.id}`)
     }
 

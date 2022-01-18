@@ -7,22 +7,22 @@ let masterMockData: MasterData[] = [
     { id: 4, name: 'Master Four' },
 ];
 
-export const MockMasterDataRepository: DataRepository = {
-    findById: async function (id: number): Promise<MasterData> {
+export default class MockMasterDataRepository implements DataRepository {
+    async findById(id: number) {
         const byId = masterMockData.find(d => d.id === id);
         if (!byId) {
             throw new Error(`$id does not exist`);
         }
         return byId;
-    },
-    findAll: async function (): Promise<MasterData[]> {
+    }
+    async findAll() {
         return [...masterMockData];
-    },
-    update: async function (data: MasterData): Promise<MasterData> {
+    }
+    async update(data: MasterData) {
         const index = masterMockData.findIndex(d => d.id === data.id);
         masterMockData.splice(index, 1, data);
 
         return data;
-        
-    }
+    };
+
 }
