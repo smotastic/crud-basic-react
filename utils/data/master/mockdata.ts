@@ -8,6 +8,7 @@ let masterMockData: MasterData[] = [
 ];
 
 export default class MockMasterDataRepository implements DataRepository {
+    
     async findById(id: number) {
         const byId = masterMockData.find(d => d.id === id);
         if (!byId) {
@@ -23,6 +24,12 @@ export default class MockMasterDataRepository implements DataRepository {
         masterMockData.splice(index, 1, data);
 
         return data;
+    };
+    async create(data: MasterData) {
+        const copy = {...data};
+        copy.id = masterMockData.length + 1;
+        masterMockData.push(copy);
+        return copy;
     };
 
 }

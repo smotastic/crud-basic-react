@@ -9,6 +9,7 @@ export interface DataRepository {
     findById: (id: number) => Promise<MasterData>;
     findAll: () => Promise<MasterData[]>,
     update: (data: MasterData) => Promise<MasterData>,
+    create: (data: MasterData) => Promise<MasterData>,
 }
 
 const dataRepo: DataRepository = new MockMasterDataRepository();

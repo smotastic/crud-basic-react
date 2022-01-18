@@ -1,8 +1,8 @@
 import { Typography, Box, TextField, Button, Alert, Grid, Container, Paper } from "@mui/material";
 import { useState } from "react";
 import { MasterData } from "../utils/data/master";
-type DetailFormProps = { data: MasterData, onSubmit: (name: MasterData) => void }
-export default function DetailForm({ data, onSubmit }: DetailFormProps) {
+type DetailFormProps = { data: MasterData, onSubmit: (name: MasterData) => void, type: 'Update' | 'Create' }
+export default function DetailForm({ data, onSubmit, type }: DetailFormProps) {
 
     const [name, setName] = useState(data.name);
     const handleNameChange = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -18,7 +18,7 @@ export default function DetailForm({ data, onSubmit }: DetailFormProps) {
         <>
             <Paper variant="outlined" sx={{ my: { xs: 3, md: 6 }, p: { xs: 2, md: 3 } }}>
                 <Typography component="h1" variant="h5">
-                    Update {data.id}
+                    {type} {data.id}
                 </Typography>
                 <Box component="form" noValidate onSubmit={handleSubmit} sx={{ mt: 1 }}>
                     <Grid container spacing={3}>
@@ -43,7 +43,7 @@ export default function DetailForm({ data, onSubmit }: DetailFormProps) {
                             variant="contained"
                             sx={{ mt: 3, ml: 1 }}
                         >
-                            Update
+                            {type}
                         </Button>
                     </Box>
                 </Box>

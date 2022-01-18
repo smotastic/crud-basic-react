@@ -24,7 +24,7 @@ export default function Detail({ id }: DetailProps) {
     }, [data]);
 
 
-    return data ? <DetailForm data={data} onSubmit={handleSubmit} /> : <DetailSkeleton />
+    return data ? <DetailForm data={data} onSubmit={handleSubmit} type="Update" /> : <DetailSkeleton />
 }
 
 function DetailSkeleton() {

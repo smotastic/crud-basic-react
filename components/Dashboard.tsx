@@ -10,11 +10,13 @@ import Typography from '@mui/material/Typography';
 import Divider from '@mui/material/Divider';
 import IconButton from '@mui/material/IconButton';
 import MenuIcon from '@mui/icons-material/Menu';
+import AddIcon from '@mui/icons-material/Add';
+import ListIcon from '@mui/icons-material/List';
 import InboxIcon from '@mui/icons-material/Inbox';
 import MailIcon from '@mui/icons-material/Mail';
 import ListItemText from '@mui/material/ListItemText';
 import { ListItem, ListItemButton, ListItemIcon } from '@mui/material';
-import { ArrowBack, KeyboardDoubleArrowLeft } from '@mui/icons-material';
+import { ArrowBack, KeyboardDoubleArrowLeft, Add } from '@mui/icons-material';
 
 import { ColorModeContext } from './Layout';
 import Brightness4Icon from '@mui/icons-material/Brightness4';
@@ -151,7 +153,11 @@ export default function PersistentDrawerLeft({ children }: DashboardProps) {
                 <List>
                     <ListItemButton onClick={() => router.push('/')}>
                         <ListItemText primary={'List'} />
-                        <MenuIcon />
+                        <ListIcon />
+                    </ListItemButton>
+                    <ListItemButton onClick={() => router.push('/create')}>
+                        <ListItemText primary={'Create'} />
+                        <AddIcon />
                     </ListItemButton>
                 </List>
                 <Divider />
