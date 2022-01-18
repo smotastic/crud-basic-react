@@ -16,6 +16,7 @@ import { useSession } from 'next-auth/react';
 import { useRouter } from 'next/router';
 import DashboardHouseplantList from './DashboardHouseplantList';
 import DashboardOptions from './DashboardOptions';
+import DashboardSeasonalList from './DashboardSeasonalList';
 
 
 const drawerWidth = 240;
@@ -138,6 +139,8 @@ export default function PersistentDrawerLeft({ children }: DashboardProps) {
                 </DrawerHeader>
                 <Divider />
                 <DashboardHouseplantList />
+                <Divider />
+                <DashboardSeasonalList />
                 <Divider />
                 <DashboardOptions />
             </Drawer>
