@@ -10,7 +10,7 @@ import { apiPath } from "../../utils/api.path";
 import { pagePath } from "../../utils/page.path";
 type DetailProps = { id: string }
 export default function Detail({ id }: DetailProps) {
-
+    console.log("Reached Client");
     const { openSnackbar } = useContext(SnackbarContext);
     const queryClient = useQueryClient()
     const router = useRouter();
@@ -59,7 +59,9 @@ function DetailSkeleton() {
 }
 
 export const getServerSideProps: GetServerSideProps = async (context) => {
+    console.log('Starting Detail');
     const id = context?.params?.id as string;
+    console.log('Ending Detail ' + id);
     return {
         props: { id: id },
     }
