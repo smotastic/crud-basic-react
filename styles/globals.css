@@ -19,3 +19,8 @@ a {
 .MuiDataGrid-row {
   cursor: pointer;
 }
+
+.MuiImageListItemBar-titleWrap{
+  padding-top: 2px;
+  padding-bottom: 2px;
+}

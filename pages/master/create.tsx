@@ -1,8 +1,8 @@
 import { useRouter } from "next/router";
-import { useCallback, useContext, useState } from "react"
+import { useContext } from "react"
 import DetailForm from "../../components/DetailForm";
 import { SnackbarContext } from "../../context/snackbar";
-import DataRepository, { MasterData } from "../../data/master"
+import { MasterData } from "../../data/master"
 
 export default function Create() {
     const router = useRouter();
@@ -20,7 +20,7 @@ export default function Create() {
                 return;
             }
             openSnackbar({ msg: `Successfully created ${creatingData.name}`, severity: 'success' })
-            router.push('/');
+            router.push('/master');
         }
         update();
     };

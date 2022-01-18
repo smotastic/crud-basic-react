@@ -1,27 +1,21 @@
 import * as React from 'react';
-import { styled, useTheme } from '@mui/material/styles';
+import { styled } from '@mui/material/styles';
 import Box from '@mui/material/Box';
 import Drawer from '@mui/material/Drawer';
 import CssBaseline from '@mui/material/CssBaseline';
 import MuiAppBar, { AppBarProps as MuiAppBarProps } from '@mui/material/AppBar';
 import Toolbar from '@mui/material/Toolbar';
-import List from '@mui/material/List';
 import Typography from '@mui/material/Typography';
 import Divider from '@mui/material/Divider';
 import IconButton from '@mui/material/IconButton';
 import MenuIcon from '@mui/icons-material/Menu';
-import AddIcon from '@mui/icons-material/Add';
-import LogoutIcon from '@mui/icons-material/Logout';
-import ListIcon from '@mui/icons-material/List';
-import ListItemText from '@mui/material/ListItemText';
-import { ListItemButton } from '@mui/material';
-import { KeyboardDoubleArrowLeft } from '@mui/icons-material';
-import { ColorModeContext } from './Layout';
-import Brightness4Icon from '@mui/icons-material/Brightness4';
-import Brightness7Icon from '@mui/icons-material/Brightness7';
 
-import { useSession, signOut } from 'next-auth/react';
+import { KeyboardDoubleArrowLeft } from '@mui/icons-material';
+
+import { useSession } from 'next-auth/react';
 import { useRouter } from 'next/router';
+import DashboardMasterList from './DashboardMasterList';
+import DashboardOptions from './DashboardOptions';
 
 
 const drawerWidth = 240;
@@ -78,8 +72,8 @@ const DrawerHeader = styled('div')(({ theme }) => ({
 type DashboardProps = { children: React.ReactNode }
 
 export default function PersistentDrawerLeft({ children }: DashboardProps) {
-    const theme = useTheme();
-    const colorMode = React.useContext(ColorModeContext);
+
+
     const [open, setOpen] = React.useState(true);
 
     const { data, status } = useSession();
@@ -111,7 +105,7 @@ export default function PersistentDrawerLeft({ children }: DashboardProps) {
 
                     <Box sx={{ width: '100%', display: 'flex', justifyContent: 'flex-start' }}>
                         <Typography sx={{ cursor: 'pointer' }} onClick={() => { router.push('/') }} variant="h6" noWrap component="div" lineHeight={2.6}>
-                            {'Crud App'}
+                            {'Planty App'}
                         </Typography>
                     </Box>
 
@@ -143,35 +137,9 @@ export default function PersistentDrawerLeft({ children }: DashboardProps) {
                     </Box>
                 </DrawerHeader>
                 <Divider />
-                <List>
-                    <ListItemButton onClick={() => router.push('/')}>
-                        <ListItemText primary={'List'} />
-                        <ListIcon />
-                    </ListItemButton>
-                    <ListItemButton onClick={() => router.push('/create')}>
-                        <ListItemText primary={'Create'} />
-                        <AddIcon />
-                    </ListItemButton>
-                </List>
+                <DashboardMasterList />
                 <Divider />
-                <List
-                    sx={{ width: '100%', maxWidth: 360, bgcolor: 'background.paper' }}
-                    component="nav"
-                >
-                    <ListItemButton onClick={colorMode.toggleColorMode}>
-                        <ListItemText primary={theme.palette.mode === 'dark' ? 'Dark Mode' : 'Light Mode'} />
-                        {theme.palette.mode === 'dark' ? <Brightness7Icon /> : <Brightness4Icon />}
-                    </ListItemButton>
-                </List>
-                <Divider />
-                <List
-                    sx={{ width: '100%', maxWidth: 360, bgcolor: 'background.paper' }}
-                    component="nav">
-                    <ListItemButton onClick={() => signOut()}>
-                        <ListItemText primary={'Logout'} />
-                        <LogoutIcon />
-                    </ListItemButton>
-                </List>
+                <DashboardOptions />
             </Drawer>
             <Main open={open}>
                 <DrawerHeader />

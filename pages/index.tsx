@@ -1,31 +1,35 @@
-import { Container } from '@mui/material'
+import { Button, Card, CardActions, CardContent, CardMedia, Container, Typography } from '@mui/material'
 import CrudList from '../components/CrudList';
 import { useQuery } from "react-query";
+import { useRouter } from 'next/router';
 
 
 
 export default function Home() {
-  // const [data, setData] = useState<MasterData[]>([]);
 
-  const { isLoading, error, data, isFetching } = useQuery("masterFindAll", () =>
-    fetch('/api/data/findAll').then((res) => res.json())
-  );
+  const router = useRouter();
 
-  if (isLoading) {
-    return <div>loading</div>
-  }
-  if (data.status >= 400) {
-    return <div>{data.msg}</div>
-  }
-
-  return <Container><CrudList data={data.data} /></Container>;
+  return (
+    <>
+      <Card sx={{ maxWidth: 345 }}>
+        <CardMedia
+          component="img"
+          height="140"
+          image="/houseplant.jpeg"
+          alt="green iguana"
+        />
+        <CardContent>
+          <Typography gutterBottom variant="h5" component="div">
+            Houseplants
+          </Typography>
+          <Typography variant="body2" color="text.secondary">
+            Update, view and create all Houseplants
+          </Typography>
+        </CardContent>
+        <CardActions>
+          <Button size="small" onClick={() => router.push('/master')}>Start</Button>
+        </CardActions>
+      </Card>
+    </>
+  )
 }
-
-
-
-// export const getServerSideProps: GetServerSideProps = async (context) => {
-//   const data = await DataRepository.findAll();
-//   return {
-//     props: { data }
-//   }
-// }
