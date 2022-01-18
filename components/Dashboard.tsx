@@ -14,7 +14,7 @@ import { KeyboardDoubleArrowLeft } from '@mui/icons-material';
 
 import { useSession } from 'next-auth/react';
 import { useRouter } from 'next/router';
-import DashboardMasterList from './DashboardMasterList';
+import DashboardHouseplantList from './DashboardHouseplantList';
 import DashboardOptions from './DashboardOptions';
 
 
@@ -137,7 +137,7 @@ export default function PersistentDrawerLeft({ children }: DashboardProps) {
                     </Box>
                 </DrawerHeader>
                 <Divider />
-                <DashboardMasterList />
+                <DashboardHouseplantList />
                 <Divider />
                 <DashboardOptions />
             </Drawer>

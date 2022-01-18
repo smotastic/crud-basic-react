@@ -1,7 +1,8 @@
 import { Button, Card, CardActions, CardContent, CardMedia, Container, Typography } from '@mui/material'
-import CrudList from '../components/CrudList';
+import CrudList from '../components/houseplants/CrudList';
 import { useQuery } from "react-query";
 import { useRouter } from 'next/router';
+import { pagePath } from '../utils/page.path';
 
 
 
@@ -27,7 +28,7 @@ export default function Home() {
           </Typography>
         </CardContent>
         <CardActions>
-          <Button size="small" onClick={() => router.push('/master')}>Start</Button>
+          <Button size="small" onClick={() => router.push(`${pagePath.houseplants}`)}>Start</Button>
         </CardActions>
       </Card>
     </>

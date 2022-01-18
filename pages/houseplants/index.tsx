@@ -1,14 +1,14 @@
 import { Container } from '@mui/material'
-import CrudList from '../../components/CrudList';
+import CrudList from '../../components/houseplants/CrudList';
 import { useQuery } from "react-query";
+import { apiPath } from '../../utils/api.path';
 
 
 
 export default function List() {
-  // const [data, setData] = useState<MasterData[]>([]);
 
   const { isLoading, error, data, isFetching } = useQuery("masterFindAll", () =>
-    fetch('/api/data/findAll').then((res) => res.json())
+    fetch(`${apiPath.houseplants}/findAll`).then((res) => res.json())
   );
 
   if (isLoading) {

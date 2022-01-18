@@ -1,7 +1,7 @@
 import { Typography, Box, TextField, Button, Alert, Grid, Container, Paper } from "@mui/material";
 import { useRouter } from "next/router";
-import { MasterData } from "../data/master";
-type DetailFormProps = { data: MasterData, onSubmit: (name: MasterData) => void, type: 'Update' | 'Create' }
+import { HouseplantData } from "../../data/houseplants";
+type DetailFormProps = { data: HouseplantData, onSubmit: (name: HouseplantData) => void, type: 'Update' | 'Create' }
 export default function DetailForm({ data, onSubmit, type }: DetailFormProps) {
     const router = useRouter();
 

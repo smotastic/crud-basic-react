@@ -2,10 +2,12 @@ import { Skeleton } from "@mui/material";
 import { GetServerSideProps } from "next"
 import { useRouter } from "next/router";
 import { Component, useCallback, useContext, useEffect, useState } from "react";
-import DetailForm from "../../components/DetailForm"
+import DetailForm from "../../components/houseplants/DetailForm"
 import { SnackbarContext } from "../../context/snackbar";
-import DataRepository, { MasterData } from "../../data/master"
+import DataRepository, { HouseplantData } from "../../data/houseplants"
 import { useQuery, useQueryClient } from "react-query";
+import { apiPath } from "../../utils/api.path";
+import { pagePath } from "../../utils/page.path";
 type DetailProps = { id: string }
 export default function Detail({ id }: DetailProps) {
 
@@ -15,7 +17,7 @@ export default function Detail({ id }: DetailProps) {
 
 
     const { isLoading, error, data, isFetching } = useQuery(`masterFindById${id}`, () =>
-        fetch(`/api/data/findById/${id}`).then((res) => res.json())
+        fetch(`${apiPath.houseplants}/findById/${id}`).then((res) => res.json())
     );
     if (isLoading) {
         return <DetailSkeleton />;
@@ -24,11 +26,11 @@ export default function Detail({ id }: DetailProps) {
         return <div>{data.msg}</div>
     }
 
-    const handleSubmit = (updatingData: MasterData) => {
+    const handleSubmit = (updatingData: HouseplantData) => {
         if (!data) return;
         async function update() {
             try {
-                const res = await fetch(`/api/data/update`, {
+                const res = await fetch(`${apiPath.houseplants}/update`, {
                     method: 'POST',
                     body: JSON.stringify(updatingData)
                 })
@@ -39,7 +41,7 @@ export default function Detail({ id }: DetailProps) {
             }
             await queryClient.invalidateQueries(`masterFindById${id}`);
             openSnackbar({ msg: `Successfully updated ${updatingData.name}`, severity: 'success' })
-            router.push('/');
+            router.push(pagePath.houseplants);
         }
         update();
     };

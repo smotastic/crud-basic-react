@@ -4,7 +4,7 @@ import AddIcon from '@mui/icons-material/Add';
 import { useRouter } from "next/router";
 import ImageListItem from '@mui/material/ImageListItem';
 
-export default function DashboardMasterList() {
+export default function DashboardHouseplantList() {
     const router = useRouter();
 
     return (
@@ -26,11 +26,11 @@ export default function DashboardMasterList() {
 
                 />
             </ImageListItem>
-            <ListItemButton onClick={() => router.push('/master')}>
+            <ListItemButton onClick={() => router.push('/houseplants')}>
                 <ListItemText primary={'List'} />
                 <ListIcon />
             </ListItemButton>
-            <ListItemButton onClick={() => router.push('/master/create')}>
+            <ListItemButton onClick={() => router.push('/houseplants/create')}>
                 <ListItemText primary={'Create'} />
                 <AddIcon />
             </ListItemButton>

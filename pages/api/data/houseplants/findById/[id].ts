@@ -1,5 +1,5 @@
 import type { NextApiRequest, NextApiResponse } from 'next'
-import DataRepository, { MasterData } from "../../../../data/master"
+import DataRepository, { HouseplantData } from "../../../../../data/houseplants"
 
 export default async (req: NextApiRequest, res: NextApiResponse) => {
     try {
