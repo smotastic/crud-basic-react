@@ -11,22 +11,18 @@ import Divider from '@mui/material/Divider';
 import IconButton from '@mui/material/IconButton';
 import MenuIcon from '@mui/icons-material/Menu';
 import AddIcon from '@mui/icons-material/Add';
+import LogoutIcon from '@mui/icons-material/Logout';
 import ListIcon from '@mui/icons-material/List';
-import InboxIcon from '@mui/icons-material/Inbox';
-import MailIcon from '@mui/icons-material/Mail';
 import ListItemText from '@mui/material/ListItemText';
-import { ListItem, ListItemButton, ListItemIcon } from '@mui/material';
-import { ArrowBack, KeyboardDoubleArrowLeft, Add } from '@mui/icons-material';
-
+import { ListItemButton } from '@mui/material';
+import { KeyboardDoubleArrowLeft } from '@mui/icons-material';
 import { ColorModeContext } from './Layout';
 import Brightness4Icon from '@mui/icons-material/Brightness4';
 import Brightness7Icon from '@mui/icons-material/Brightness7';
 
-import { AppProps } from 'next/app';
-
-import { useState } from 'react';
-import { useSession } from 'next-auth/react';
+import { useSession, signOut } from 'next-auth/react';
 import { useRouter } from 'next/router';
+
 
 const drawerWidth = 240;
 
@@ -114,10 +110,7 @@ export default function PersistentDrawerLeft({ children }: DashboardProps) {
                     </IconButton>
 
                     <Box sx={{ width: '100%', display: 'flex', justifyContent: 'flex-start' }}>
-                        {router.route !== '/' && <IconButton onClick={() => router.push('/')} >
-                            <ArrowBack />
-                        </IconButton>}
-                        <Typography variant="h6" noWrap component="div" lineHeight={2.6}>
+                        <Typography sx={{ cursor: 'pointer' }} onClick={() => { router.push('/') }} variant="h6" noWrap component="div" lineHeight={2.6}>
                             {'Crud App'}
                         </Typography>
                     </Box>
@@ -168,6 +161,15 @@ export default function PersistentDrawerLeft({ children }: DashboardProps) {
                     <ListItemButton onClick={colorMode.toggleColorMode}>
                         <ListItemText primary={theme.palette.mode === 'dark' ? 'Dark Mode' : 'Light Mode'} />
                         {theme.palette.mode === 'dark' ? <Brightness7Icon /> : <Brightness4Icon />}
+                    </ListItemButton>
+                </List>
+                <Divider />
+                <List
+                    sx={{ width: '100%', maxWidth: 360, bgcolor: 'background.paper' }}
+                    component="nav">
+                    <ListItemButton onClick={() => signOut()}>
+                        <ListItemText primary={'Logout'} />
+                        <LogoutIcon />
                     </ListItemButton>
                 </List>
             </Drawer>

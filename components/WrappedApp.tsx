@@ -1,7 +1,4 @@
-import { Snackbar } from "@mui/material";
 import { useSession } from "next-auth/react";
-import { useContext, useState } from "react";
-import { SnackbarContext } from "../context/snackbar";
 import Dashboard from "./Dashboard";
 import Layout from "./Layout";
 import SnackbarGlobal from "./snackbarglobal";
