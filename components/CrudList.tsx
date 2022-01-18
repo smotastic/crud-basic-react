@@ -5,8 +5,8 @@ import { MasterData } from "../data/master";
 
 
 const columns: GridColDef[] = [
-    { field: 'id', headerName: 'Id', width: 150 },
-    { field: 'name', headerName: 'Name', width: 150 },
+    { field: 'id', headerName: 'Id' , width: 200},
+    { field: 'name', headerName: 'Name', width: 250 },
 ];
 type CrudListProps = { data: MasterData[] }
 export default function CrudList({ data }: CrudListProps) {

@@ -6,14 +6,11 @@ type DetailFormProps = { data: MasterData, onSubmit: (name: MasterData) => void,
 export default function DetailForm({ data, onSubmit, type }: DetailFormProps) {
     const router = useRouter();
 
-    const [name, setName] = useState(data.name);
-    const handleNameChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-        setName(event.target.value);
-    };
-
     const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
         event.preventDefault();
-        onSubmit({ id: data.id, name });
+        const form = new FormData(event.currentTarget);
+        const name = form.get('name') as string;
+        onSubmit({ id: data.id, name: name });
     }
 
     return (
@@ -33,8 +30,7 @@ export default function DetailForm({ data, onSubmit, type }: DetailFormProps) {
                                 label="Name"
                                 name="name"
                                 autoFocus
-                                value={name}
-                                onChange={handleNameChange}
+                                defaultValue={data.name}
                             />
                         </Grid>
                     </Grid>

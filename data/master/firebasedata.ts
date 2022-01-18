@@ -1,7 +1,7 @@
 import { DataRepository, MasterData } from "./index";
 import '../firebase/config';
 import { getDocs, getFirestore } from "firebase/firestore"
-import { collection, addDoc, doc, getDoc, query, where } from "firebase/firestore";
+import { collection, addDoc, doc, getDoc, query, where, updateDoc, setDoc } from "firebase/firestore";
 export default class FirebaseMasterDataRepository implements DataRepository {
 
     private db = getFirestore();
@@ -25,10 +25,16 @@ export default class FirebaseMasterDataRepository implements DataRepository {
         return result;
     }
     async update(data: MasterData) {
+        const docRef = doc(this.db, 'master', data.id!);
+        const copy = { ...data };
+        delete copy.id;
+        await updateDoc(docRef, copy)
+
         return data;
     };
     async create(data: MasterData) {
-        return data;
+        const docRef = await addDoc(collection(this.db, 'master'), data);
+        return { ...data, id: docRef.id };
     };
 
 }

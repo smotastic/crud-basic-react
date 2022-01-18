@@ -7,24 +7,26 @@ import DataRepository, { MasterData } from "../../data/master"
 export default function Create() {
     const router = useRouter();
     const { openSnackbar } = useContext(SnackbarContext);
-    const handleSubmit = useCallback((createdData: MasterData) => {
-        async function callback() {
+    const handleSubmit = (creatingData: MasterData) => {
+        async function update() {
             try {
-                await DataRepository.create(createdData);
+                await fetch(`/api/data/create`, {
+                    method: 'POST',
+                    body: JSON.stringify(creatingData)
+                })
+                
             } catch (error) {
-                openSnackbar({ msg: `Error creating ${createdData.name}`, severity: 'error' });
+                openSnackbar({ msg: `Error creating ${creatingData.name}`, severity: 'error' })
                 return;
             }
-
-            openSnackbar({ msg: `Successfully created ${createdData.name}`, severity: 'success' });
+            openSnackbar({ msg: `Successfully created ${creatingData.name}`, severity: 'success' })
             router.push('/');
         }
-        callback();
-    }, []);
+        update();
+    };
     return (
         <>
             <DetailForm data={{ name: '' }} onSubmit={handleSubmit} type="Create" />
-
         </>
     )
 

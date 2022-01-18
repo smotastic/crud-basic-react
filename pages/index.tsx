@@ -1,10 +1,7 @@
-import { Container, Paper } from '@mui/material'
-import type { GetServerSideProps, GetStaticProps, NextPage } from 'next'
-import { useEffect, useState } from 'react';
+import { Container } from '@mui/material'
 import CrudList from '../components/CrudList';
-import { MasterData } from '../data/master';
-import { QueryClient, QueryClientProvider, useQuery } from "react-query";
-import { useSession } from 'next-auth/react';
+import { useQuery } from "react-query";
+
 
 
 export default function Home() {
