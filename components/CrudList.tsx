@@ -1,7 +1,7 @@
 import { DataGrid, GridColDef, GridRowParams, GridRowsProp, useGridApiRef } from "@mui/x-data-grid";
 import { GetStaticProps } from "next";
 import { useRouter } from "next/router";
-import { MasterData } from "../utils/data/master";
+import { MasterData } from "../data/master";
 
 
 const columns: GridColDef[] = [

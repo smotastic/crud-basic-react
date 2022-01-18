@@ -4,7 +4,7 @@ import { useRouter } from "next/router";
 import { Component, useCallback, useContext, useEffect, useState } from "react";
 import DetailForm from "../../components/DetailForm"
 import { SnackbarContext } from "../../context/snackbar";
-import DataRepository, { MasterData } from "../../utils/data/master"
+import DataRepository, { MasterData } from "../../data/master"
 
 type DetailProps = { id: number }
 export default function Detail({ id }: DetailProps) {

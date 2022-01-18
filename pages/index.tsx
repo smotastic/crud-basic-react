@@ -2,7 +2,7 @@ import { Container, Paper } from '@mui/material'
 import type { GetServerSideProps, GetStaticProps, NextPage } from 'next'
 import { useEffect, useState } from 'react';
 import CrudList from '../components/CrudList';
-import DataRepository, { MasterData } from "../utils/data/master"
+import DataRepository, { MasterData } from "../data/master"
 
 
 export default function Home() {

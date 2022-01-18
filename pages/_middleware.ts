@@ -2,7 +2,7 @@
 
 import { NextRequest, NextResponse } from 'next/server'
 import { Response } from "next/dist/server/web/spec-compliant/response";
-import { auth } from "../utils/auth";
+import { auth } from "../data/auth";
 import { getSession } from "next-auth/react"
 import { getToken } from 'next-auth/jwt';
 

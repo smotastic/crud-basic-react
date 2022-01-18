@@ -1,8 +1,10 @@
 import { Typography, Box, TextField, Button, Alert, Grid, Container, Paper } from "@mui/material";
+import { useRouter } from "next/router";
 import { useState } from "react";
-import { MasterData } from "../utils/data/master";
+import { MasterData } from "../data/master";
 type DetailFormProps = { data: MasterData, onSubmit: (name: MasterData) => void, type: 'Update' | 'Create' }
 export default function DetailForm({ data, onSubmit, type }: DetailFormProps) {
+    const router = useRouter();
 
     const [name, setName] = useState(data.name);
     const handleNameChange = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -39,12 +41,22 @@ export default function DetailForm({ data, onSubmit, type }: DetailFormProps) {
 
                     <Box sx={{ display: 'flex', justifyContent: 'flex-end' }}>
                         <Button
+                            color="secondary"
+                            type="button"
+                            variant="contained"
+                            sx={{ mt: 3, ml: 1 }}
+                            onClick={() => router.back()}
+                        >
+                            {'Back'}
+                        </Button>
+                        <Button
                             type="submit"
                             variant="contained"
                             sx={{ mt: 3, ml: 1 }}
                         >
                             {type}
                         </Button>
+
                     </Box>
                 </Box>
             </Paper>
