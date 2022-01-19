@@ -3,11 +3,13 @@ import { useRouter } from "next/router";
 import { useState } from "react";
 import { HouseplantData } from "../../data/houseplants";
 import { SUNLIGHT, WATER_REQUIREMENT } from "../../utils/houseplant.select";
+import BasicDatePicker from "./DatePicker";
 type DetailFormProps = { data: HouseplantData, onSubmit: (name: HouseplantData) => void, type: 'Update' | 'Create' }
 export default function DetailForm({ data, onSubmit, type }: DetailFormProps) {
     const router = useRouter();
 
-    const [defaultValues, setDefaultValues] = useState({ ...data });
+    const [defaultValues, _] = useState({ ...data });
+    const [lastWatered, setLastWatered] = useState<Date>();
 
     const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
         event.preventDefault();
@@ -16,7 +18,7 @@ export default function DetailForm({ data, onSubmit, type }: DetailFormProps) {
         const description = form.get('description') as string;
         const waterRequirement = form.get('waterRequirement') as string;
         const sunlight = form.get('sunlight') as string;
-        onSubmit({ id: data.id, name, description, waterRequirement, sunlight });
+        onSubmit({ id: data.id, name, description, waterRequirement, sunlight, lastWatered });
     }
 
     return (
@@ -79,6 +81,10 @@ export default function DetailForm({ data, onSubmit, type }: DetailFormProps) {
                                     {SUNLIGHT.map(req => <MenuItem key={req} value={req}>{req}</MenuItem>)}
                                 </Select>
                             </FormControl>
+                        </Grid>
+
+                        <Grid item xs={12} sm={6}>
+                            <BasicDatePicker onChange={setLastWatered} initialValue={defaultValues.lastWatered}/>
                         </Grid>
                     </Grid>
 

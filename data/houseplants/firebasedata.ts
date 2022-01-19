@@ -12,7 +12,7 @@ export default class FirebaseHouseplantDataRepository implements DataRepository 
         const docSnap = await getDoc(docRef);
         if (docSnap.exists()) {
             const data = docSnap.data();
-            return { id: docSnap.id, name: data.name, description: data.description, waterRequirement: data.waterRequirement, sunlight: data.sunlight };
+            return { id: docSnap.id, name: data.name, description: data.description, waterRequirement: data.waterRequirement, sunlight: data.sunlight, lastWatered: data.lastWatered };
         }
         throw new Error('Document does not exist');
     }
@@ -22,7 +22,7 @@ export default class FirebaseHouseplantDataRepository implements DataRepository 
         const result: HouseplantData[] = [];
         snapshot.forEach((doc) => {
             const data = doc.data();
-            result.push({ id: doc.id, name: data.name, description: data.description, waterRequirement: data.waterRequirement, sunlight: data.sunlight });
+            result.push({ id: doc.id, name: data.name, description: data.description, waterRequirement: data.waterRequirement, sunlight: data.sunlight, lastWatered: data.lastWatered });
         });
         return result;
     }

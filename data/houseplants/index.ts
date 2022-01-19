@@ -5,7 +5,7 @@ export interface HouseplantData {
     id?: string,
     name: string,
     description: string,
-    // lastWatered: Date,
+    lastWatered?: Date,
     waterRequirement: string,
     sunlight: string
 }
