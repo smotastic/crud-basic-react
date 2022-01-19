@@ -21,7 +21,9 @@ export default function DashboardOptions() {
                 <ListItemText primary={theme.palette.mode === 'dark' ? 'Dark Mode' : 'Light Mode'} />
                 {theme.palette.mode === 'dark' ? <Brightness7Icon /> : <Brightness4Icon />}
             </ListItemButton>
-        </List><Divider /><List
+        </List>
+        <Divider />
+        <List
             sx={{ width: '100%', maxWidth: 360, bgcolor: 'background.paper' }}
             component="nav">
             <ListItemButton onClick={() => signOut()}>

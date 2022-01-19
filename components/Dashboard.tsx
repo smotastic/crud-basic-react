@@ -23,6 +23,7 @@ const drawerWidth = 240;
 
 
 type DashboardProps = { children: React.ReactNode }
+
 const DrawerHeader = styled('div')(({ theme }) => ({
     display: 'flex',
     alignItems: 'center',

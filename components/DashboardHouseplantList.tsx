@@ -9,14 +9,15 @@ export default function DashboardHouseplantList() {
     const router = useRouter();
 
     return (
-        <List subheader={
-            <ListSubheader component="div" id="nested-list-subheader">
+        <List sx={{ width: '100%', maxWidth: 360, bgcolor: 'background.paper' }}
+            subheader={
+                <ListSubheader component="div" id="nested-list-subheader">
 
-            </ListSubheader>
-        }>
+                </ListSubheader>
+            }>
             <ImageListItem>
                 <img
-                    style={{ height: '70px', width: '240px', objectFit: 'cover' }}
+                    style={{ height: '70px', width: '239px', objectFit: 'cover' }}
                     src={`/houseplant.jpeg`}
                     loading="lazy"
                 />
