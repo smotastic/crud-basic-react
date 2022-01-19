@@ -1,5 +1,5 @@
 import { Container, Skeleton } from '@mui/material'
-import CrudList from '../../components/houseplants/CrudList';
+import HouseplantList from '../../components/houseplants/HouseplantList';
 import { useQuery } from "react-query";
 import { apiPath } from '../../utils/api.path';
 
@@ -17,7 +17,7 @@ export default function List() {
   if (data.status >= 400) {
     return <div>{data.msg}</div>
   }
-  return <Container><CrudList data={data.data} /></Container>;
+  return <Container><HouseplantList data={data.data} /></Container>;
 }
 
 function ListSkeleton() {

@@ -1,9 +1,9 @@
 import { Skeleton } from "@mui/material";
 import { useRouter } from "next/router";
 import { useContext } from "react";
-import DetailForm from "../../components/houseplants/HouseplantDetailForm"
+import DetailForm from "../../components/seasonal/SeasonalDetailForm"
 import { SnackbarContext } from "../../context/snackbar";
-import { HouseplantData } from "../../data/houseplants"
+import { SeasonalData } from "../../data/seasonal"
 import { useQuery, useQueryClient } from "react-query";
 import { apiPath } from "../../utils/api.path";
 import { pagePath } from "../../utils/page.path";
@@ -14,8 +14,8 @@ export default function Detail() {
     const router = useRouter();
 
     const { id } = router.query;
-    const { isLoading, error, data, isFetching } = useQuery(`masterFindById${id}`, () =>
-        fetch(`${apiPath.houseplants}/findById/${id}`).then((res) => res.json())
+    const { isLoading, data } = useQuery(`seasonalFindById${id}`, () =>
+        fetch(`${apiPath.seasonal}/findById/${id}`).then((res) => res.json())
     );
     if (isLoading) {
         return <DetailSkeleton />;
@@ -24,11 +24,11 @@ export default function Detail() {
         return <div>{data.msg}</div>
     }
 
-    const handleSubmit = (updatingData: HouseplantData) => {
+    const handleSubmit = (updatingData: SeasonalData) => {
         if (!data) return;
         async function update() {
             try {
-                const res = await fetch(`${apiPath.houseplants}/update`, {
+                const res = await fetch(`${apiPath.seasonal}/update`, {
                     method: 'POST',
                     body: JSON.stringify(updatingData)
                 })
@@ -37,9 +37,9 @@ export default function Detail() {
                 openSnackbar({ msg: `Error updating ${updatingData.name}`, severity: 'error' })
                 return;
             }
-            await queryClient.invalidateQueries(`masterFindById${id}`);
+            await queryClient.invalidateQueries(`seasonalFindById${id}`);
             openSnackbar({ msg: `Successfully updated ${updatingData.name}`, severity: 'success' })
-            router.push(pagePath.houseplants);
+            router.push(pagePath.seasonal);
         }
         update();
     };

@@ -1,18 +1,18 @@
 import { useRouter } from "next/router";
 import { useContext } from "react"
-import DetailForm from "../../components/houseplants/HouseplantDetailForm";
+import DetailForm from "../../components/seasonal/SeasonalDetailForm";
 import { SnackbarContext } from "../../context/snackbar";
-import { HouseplantData } from "../../data/houseplants"
+import { SeasonalData } from "../../data/seasonal";
 import { apiPath } from "../../utils/api.path";
 import { pagePath } from "../../utils/page.path";
 
 export default function Create() {
     const router = useRouter();
     const { openSnackbar } = useContext(SnackbarContext);
-    const handleSubmit = (creatingData: HouseplantData) => {
+    const handleSubmit = (creatingData: SeasonalData) => {
         async function update() {
             try {
-                await fetch(`${apiPath.houseplants}/create`, {
+                await fetch(`${apiPath.seasonal}/create`, {
                     method: 'POST',
                     body: JSON.stringify(creatingData)
                 })
@@ -22,7 +22,7 @@ export default function Create() {
                 return;
             }
             openSnackbar({ msg: `Successfully created ${creatingData.name}`, severity: 'success' })
-            router.push(`${pagePath.houseplants}`);
+            router.push(`${pagePath.seasonal}`);
         }
         update();
     };

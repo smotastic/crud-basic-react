@@ -1,5 +1,5 @@
 import { Box, BoxProps, Button, Card, CardActions, CardContent, CardMedia, Container, Typography } from '@mui/material'
-import CrudList from '../components/houseplants/CrudList';
+import HouseplantList from '../components/houseplants/HouseplantList';
 import { useQuery } from "react-query";
 import { useRouter } from 'next/router';
 import { pagePath } from '../utils/page.path';

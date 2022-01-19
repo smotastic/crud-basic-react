@@ -28,11 +28,11 @@ export default function DashboardSeasonalList() {
 
                 />
             </ImageListItem>
-            <ListItemButton disabled onClick={() => router.push(`${pagePath.seasonal}`)}>
+            <ListItemButton onClick={() => router.push(`${pagePath.seasonal}`)}>
                 <ListItemText primary={'List'} />
                 <ListIcon />
             </ListItemButton>
-            <ListItemButton disabled onClick={() => router.push(`${pagePath.seasonal}/create`)}>
+            <ListItemButton onClick={() => router.push(`${pagePath.seasonal}/create`)}>
                 <ListItemText primary={'Create'} />
                 <AddIcon />
             </ListItemButton>

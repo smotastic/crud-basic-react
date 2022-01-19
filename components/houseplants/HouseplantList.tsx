@@ -8,8 +8,8 @@ const columns: GridColDef[] = [
     { field: 'id', headerName: 'Id' , width: 200},
     { field: 'name', headerName: 'Name', width: 250 },
 ];
-type CrudListProps = { data: HouseplantData[] }
-export default function CrudList({ data }: CrudListProps) {
+type HouseplantListProps = { data: HouseplantData[] }
+export default function HouseplantList({ data }: HouseplantListProps) {
 
     const router = useRouter();
 
