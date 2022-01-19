@@ -25,9 +25,9 @@ export default function Home() {
 
   return (
     <>
-      <Box sx={{ display: 'flex', flexDirection: 'row', justifyContent: 'flex-start' }}>
+      <Box sx={{ display: 'flex', flexDirection: {sm: 'column', md: 'row'}, justifyContent: 'flex-start' }}>
         <Item>
-          <Card sx={{ maxWidth: 345 }}>
+          <Card sx={{ width: 300, height: 300 }}>
             <CardMedia
               component="img"
               height="140"
@@ -48,7 +48,7 @@ export default function Home() {
           </Card>
         </Item>
         <Item>
-          <Card sx={{ maxWidth: 345 }}>
+          <Card sx={{ width: 300, height: 300 }}>
             <CardMedia
               component="img"
               height="140"

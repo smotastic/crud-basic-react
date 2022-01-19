@@ -16,7 +16,7 @@ export default function DashboardHouseplantList() {
         }>
             <ImageListItem>
                 <img
-                    style={{ height: '70px', width: '300px', objectFit: 'cover' }}
+                    style={{ height: '70px', width: '240px', objectFit: 'cover' }}
                     src={`/houseplant.jpeg`}
                     loading="lazy"
                 />

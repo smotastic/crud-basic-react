@@ -1,15 +1,15 @@
 
 
 import { NextRequest, NextResponse } from 'next/server'
-import { Response } from "next/dist/server/web/spec-compliant/response";
-import { auth } from "../data/auth";
-import { getSession } from "next-auth/react"
 import { getToken } from 'next-auth/jwt';
+import { NextApiRequest } from 'next';
 
-
+type NextApiRequestWithUrl = NextApiRequest & {
+    url: string
+}
 
 // https://gist.github.com/balazsorban44/30e2267fe1105529f217acbe3763b468
-export async function middleware(req: any) {
+export async function middleware(req: NextApiRequestWithUrl) {
     // return early if url isn't supposed to be protected
     if (req.url.includes("/auth") || req.url.includes("splash")) {
         return NextResponse.next()

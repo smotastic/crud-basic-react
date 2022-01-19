@@ -16,7 +16,7 @@ export default function DashboardSeasonalList() {
         }>
             <ImageListItem>
                 <img
-                    style={{ height: '70px', width: '300px', objectFit: 'cover' }}
+                    style={{ height: '70px', width: '240px', objectFit: 'cover' }}
                     src={`/seasonal.jpeg`}
                     loading="lazy"
                 />
