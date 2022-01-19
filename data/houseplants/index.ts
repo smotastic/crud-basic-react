@@ -3,7 +3,11 @@ import MockHouseplantDataRepository from "./mockdata";
 
 export interface HouseplantData {
     id?: string,
-    name: string
+    name: string,
+    description: string,
+    // lastWatered: Date,
+    waterRequirement: string,
+    sunlight: string
 }
 
 export interface DataRepository {

@@ -23,6 +23,7 @@ export default NextAuth({
         }),
     ],
     callbacks: {
+        // https://stackoverflow.com/questions/67234794/nextjs-and-nextauth-session-user-object-getting-lost-due-to-nextauth-ts-get
         async jwt(options) {
             const token = options.user?.token;
             options.token.firebaseToken = token;

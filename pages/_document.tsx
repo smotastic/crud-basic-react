@@ -12,7 +12,7 @@ class MyDocument extends Document {
       <Html>
         <Head>
           <link rel="icon" type="image/x-icon" href="/favicon.ico" />
-        </Head>)
+        </Head>
         <body>
           <Main />
           <NextScript />

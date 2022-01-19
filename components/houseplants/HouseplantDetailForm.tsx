@@ -1,15 +1,22 @@
-import { Typography, Box, TextField, Button, Alert, Grid, Container, Paper } from "@mui/material";
+import { Typography, Box, TextField, Button, Alert, Grid, Container, Paper, MenuItem, Select, InputLabel, FormControl } from "@mui/material";
 import { useRouter } from "next/router";
+import { useState } from "react";
 import { HouseplantData } from "../../data/houseplants";
+import { SUNLIGHT, WATER_REQUIREMENT } from "../../utils/houseplant.select";
 type DetailFormProps = { data: HouseplantData, onSubmit: (name: HouseplantData) => void, type: 'Update' | 'Create' }
 export default function DetailForm({ data, onSubmit, type }: DetailFormProps) {
     const router = useRouter();
+
+    const [defaultValues, setDefaultValues] = useState({ ...data });
 
     const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
         event.preventDefault();
         const form = new FormData(event.currentTarget);
         const name = form.get('name') as string;
-        onSubmit({ id: data.id, name: name });
+        const description = form.get('description') as string;
+        const waterRequirement = form.get('waterRequirement') as string;
+        const sunlight = form.get('sunlight') as string;
+        onSubmit({ id: data.id, name, description, waterRequirement, sunlight });
     }
 
     return (
@@ -31,6 +38,47 @@ export default function DetailForm({ data, onSubmit, type }: DetailFormProps) {
                                 autoFocus
                                 defaultValue={data.name}
                             />
+                        </Grid>
+                        <Grid item xs={12}>
+                            <TextField
+                                margin="normal"
+                                required
+                                fullWidth
+                                multiline
+                                maxRows={4}
+                                id="description"
+                                label="Description"
+                                name="description"
+                                defaultValue={data.description}
+                            />
+                        </Grid>
+                        <Grid item xs={12} sm={6}>
+                            <FormControl fullWidth>
+                                <InputLabel id="waterRequirementLabel">Water Requirement</InputLabel>
+                                <Select
+                                    labelId="waterRequirementLabel"
+                                    id="waterRequirement"
+                                    label="Water Requirement"
+                                    name="waterRequirement"
+                                    defaultValue={defaultValues.waterRequirement}
+                                >
+                                    {WATER_REQUIREMENT.map(req => <MenuItem key={req} value={req}>{req}</MenuItem>)}
+                                </Select>
+                            </FormControl>
+                        </Grid>
+                        <Grid item xs={12} sm={6}>
+                            <FormControl fullWidth>
+                                <InputLabel id="sunlightLabel">Sunlight</InputLabel>
+                                <Select
+                                    labelId="sunlightLabel"
+                                    id="sunlight"
+                                    label="Sunlight"
+                                    name="sunlight"
+                                    defaultValue={defaultValues.sunlight}
+                                >
+                                    {SUNLIGHT.map(req => <MenuItem key={req} value={req}>{req}</MenuItem>)}
+                                </Select>
+                            </FormControl>
                         </Grid>
                     </Grid>
 
