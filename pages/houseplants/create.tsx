@@ -28,7 +28,7 @@ export default function Create() {
     };
     return (
         <>
-            <DetailForm data={{ name: '' }} onSubmit={handleSubmit} type="Create" />
+            <DetailForm data={{ name: '', sunlight: '', description: '', waterRequirement: '' }} onSubmit={handleSubmit} type="Create" />
         </>
     )
 
