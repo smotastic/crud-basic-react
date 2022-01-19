@@ -19,6 +19,7 @@ import DashboardHouseplantList from './DashboardHouseplantList';
 import DashboardOptions from './DashboardOptions';
 import DashboardSeasonalList from './DashboardSeasonalList';
 import { useRouter } from 'next/router';
+import Image from 'next/image';
 const drawerWidth = 240;
 
 
@@ -72,8 +73,9 @@ export default function ResponsiveDrawer({ children }: DashboardProps) {
                     >
                         <MenuIcon />
                     </IconButton>
+                    <Image src='/logo.png' width={32} height={48} onClick={() => { router.push('/') }} className='pointer' />
                     <Typography variant="h6" noWrap component="div">
-                        <Typography sx={{ cursor: 'pointer' }} onClick={() => { router.push('/') }} variant="h6" noWrap component="div" lineHeight={2.6}>
+                        <Typography sx={{ cursor: 'pointer', ml: '10px' }} onClick={() => { router.push('/') }} variant="h6" noWrap component="div" lineHeight={2.6}>
                             {'Planty App'}
                         </Typography>
                     </Typography>
